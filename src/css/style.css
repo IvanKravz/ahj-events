@@ -1,0 +1,36 @@
+h1 {
+    text-align: center
+}
+
+.card {
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    margin-bottom: 0;
+  }
+  
+  .hole-game {
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .hole {
+    width: 120px;
+    height: 120px;
+    margin: 0 15px 30px;
+    background: rgb(95, 95, 95);
+    border-radius: 50%;
+  }
+  
+  .hole_has-mole {
+    background-image: url(https://github.com/netology-code/ahj-homeworks/blob/video/dom/pic/goblin.png?raw=true);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  
+  .cursor_hammer {
+    cursor: url(../image/hammer.png), auto;
+  }
