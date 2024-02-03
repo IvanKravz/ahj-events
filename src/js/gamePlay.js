@@ -33,7 +33,7 @@ export class GamePlay {
             this.activeHole = Math.floor( 1 + Math.random() * 16 );
             activateHole( this.activeHole );
             next();
-            }, 1000 );
+            }, 100000 );
         
         next();
     }    
@@ -71,9 +71,14 @@ export class GamePlay {
     getHole(e) {
         
         const target = e.target
-        target.classList.add('cursor_hammer')
+        e.target.classList.add("cursor_hammer");
+        // target.classList.add('cursor_hammer')
         if (target.classList.contains('hole_has-mole')) {
-            target.classList.add('cursor_hammer')
+            e.target.classList.add("cursor_hammer");
+            // target.appendChild(cursor);
+
+
+            // target.classList.add('cursor_hammer')
         }
     }
 
