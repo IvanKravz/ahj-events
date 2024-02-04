@@ -3,18 +3,18 @@ export class GamePlay {
         if(typeof element === 'string') {
             element = document.querySelector(element);
         }
-
-        this._element = element
+        this.holes = 16;
+        this.point = 0;
+        this.advent = 0;
+        this.clicking = 0;
+        this.counterLost = 0;
+        this._element = element;
 
         this.activeHole = 1;
 
-        this.getHole = this.getHole.bind(this);
-        // this.clickHole = this.clickHole.bind(this);
-        // this.getHole = this.getHole.bind(this);
-        // this.submot = this.submot.bind(this);
-        
-        this._element.addEventListener('click', this.getHole);
-        
+        this.clickHole = this.clickHole.bind(this);
+
+        this._element.addEventListener('click', this.clickHole);   
     }
         
     startGame() {
@@ -30,67 +30,44 @@ export class GamePlay {
                 return;
             }
             deactivateHole( this.activeHole );
-            this.activeHole = Math.floor( 1 + Math.random() * 16 );
+            this.activeHole = Math.floor( 1 + Math.random() * this.holes );
             activateHole( this.activeHole );
+            
+            this.advent += 1;
+            if (this.clicking > 0 && this.advent > 4) {
+                this.clicking = 0;
+                this.advent = 0
+            }
+
+            if (this.advent === 5 && this.clicking === 0) {
+                this.lossGame()
+            }
             next();
-            }, 100000 );
-        
+            }, 1000 );
         next();
     }    
     
-    getHole(index) {
-        return document.getElementById(`hole${index}`);
-    } 
-
-    submot(hole) {
-        
-        let counterDead = 0;
-        let counterLost = 0;
-        // console.log(hole)
-        if (hole.classList.contains('hole_has-mole')) {
-            counterDead++;
-            // deadMole.textContent = counterDead;
-            
-            } else {
-            counterLost++;
-            // lostMole.textContent = counterLost;
-            }
-        
-        // console.log(counterLost)   
-        if (counterDead === 10) {
-        alert("Вы победили");
-        location.reload()
-        }
-        if (counterLost === 5) {
-        alert("Вы проиграли");
-        location.reload()
-        }
-        // console.log(counterDead)
-    }
-
-    getHole(e) {
-        
+    clickHole(e) {
+        this.clicking += 1;
         const target = e.target
-        e.target.classList.add("cursor_hammer");
-        // target.classList.add('cursor_hammer')
         if (target.classList.contains('hole_has-mole')) {
-            e.target.classList.add("cursor_hammer");
-            // target.appendChild(cursor);
+            target.classList.add("cursor_hammer");
+            this.point += 1;
+            target.classList.remove("hole_has-mole");
+            this.startGame
+        } else {
+            this.counterLost += 1;
+        }
+        if (this.counterLost === 5) {
+            this.lossGame()
+            }
+    }
 
-
-            // target.classList.add('cursor_hammer')
+    lossGame() {
+            alert("Игра окончена! Количество ваших попаданий: " + this.point);  
+            location.reload()      
         }
     }
 
-
-    clickHole() {
-
-        for (let index = 1; index <= 16; index++) {
-            
-            let hole = this.getHole(index);
-            hole.addEventListener('click', this.submot(hole))
-            }
-        }
-}
 
   
