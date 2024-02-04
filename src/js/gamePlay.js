@@ -3,9 +3,9 @@ export default class GamePlay {
     if (typeof element === "string") {
       element = document.querySelector(element);
     } else {
-        throw new Error('element type no "string"');
+      throw new Error('element type no "string"');
     }
-    
+
     this.holes = 16;
     this.point = 0;
     this.advent = 0;
