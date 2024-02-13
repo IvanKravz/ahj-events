@@ -49,12 +49,12 @@ export default class GamePlay {
     next();
   }
 
-  clickHole(e) {
+  clickHole(elem) {
     this.clicking += 1;
-    const { target } = e;
+    const { target } = elem;
     if (target.classList.contains('hole_has-mole')) {
-      target.classList.add('cursor_hammer');
       this.point += 1;
+      target.classList.add('cursor_hammer');
       target.classList.remove('hole_has-mole');
       this.startGame;
     } else {
