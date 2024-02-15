@@ -1,7 +1,7 @@
 {
   "name": "ahj-events",
   "version": "1.0.0",
-  "description": "<!-- ![CI](https://ci.appveyor.com/project/IvanKravz/ahj-events/branch/master) -->",
+  "description": "<!-- ![CI](https://ci.appveyor.com/project/IvanKravz/ahj-events/branch/main) -->",
   "main": ".eslintrc.js",
   "scripts": {
     "start": "webpack serve --mode development",
